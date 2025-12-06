@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     //Game State
     public int gameState;
+    public final int titleState=0;
     public final int playState=1;
     public final int pauseState=2;
     public final int dialogueState=3;
@@ -70,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setNPC();
         // playMusic(0);
         
-        gameState = playState;
+        gameState = titleState;
 
     }
 
@@ -131,9 +132,15 @@ public class GamePanel extends JPanel implements Runnable{
         if(keyH.checkDrawTime == true){
             drawStart = System.nanoTime();
         }
-        
-        //tile
-        tileM.draw(g2);
+
+        //title screen
+        if(gameState==titleState){
+            ui.draw(g2);
+
+        }
+        //others
+        else{
+        tileM.draw(g2);//tile
 
         //object
         for(int i=0; i<obj.length; i++){
@@ -141,20 +148,16 @@ public class GamePanel extends JPanel implements Runnable{
                 obj[i].draw(g2, this);
             }
         }
-
         //npc
         for(int i=0; i<npc.length; i++){
             if(npc[i] != null){
                 npc[i].draw(g2);
             }
         }
-
         //player
         player.draw(g2);
-
         //UI
         ui.draw(g2);
-        
         //debug
         if(keyH.checkDrawTime==true){
             long drawEnd = System.nanoTime();
@@ -164,6 +167,7 @@ public class GamePanel extends JPanel implements Runnable{
             System.out.println("Draw Time:" + passed);
         }
         g2.dispose();
+        }
     }
     public void playMusic(int i){
         music.setFile(i);
