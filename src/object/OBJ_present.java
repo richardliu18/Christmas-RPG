@@ -1,30 +1,17 @@
 package object;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import entity.Entity;
 import mainpkg.GamePanel;
 
-public class OBJ_present extends SuperObject{
+public class OBJ_present extends Entity{
 
-    GamePanel gp;
-
+    
     public OBJ_present(GamePanel gp){
 
-    this.gp=gp;
-        
+    super(gp);
     name = "present";
     collision = true;
 
-    try{
-            image = ImageIO.read(getClass().getResourceAsStream("/res/objects/bigPresent.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
-    
+    down1 = setup("objects/bigPresent");
     }
 }

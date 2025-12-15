@@ -1,28 +1,16 @@
 package object;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import entity.Entity;
 import mainpkg.GamePanel;
 
-public class OBJ_cleaner extends SuperObject{
-
-    GamePanel gp;
+public class OBJ_cleaner extends Entity{
 
     public OBJ_cleaner(GamePanel gp){
 
-        this.gp=gp;
+        super(gp);
 
         name = "cleaner";
-
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream("/res/objects/cleaner.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        down1 = setup("objects/cleaner");
 
     
     }

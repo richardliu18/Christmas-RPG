@@ -1,28 +1,18 @@
 package object;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import entity.Entity;
 import mainpkg.GamePanel;
 
-public class OBJ_rock extends SuperObject{
+public class OBJ_rock extends Entity{
 
-    GamePanel gp;
 
     public OBJ_rock(GamePanel gp){
 
-        this.gp=gp;
+        super(gp);
 
         name = "rock";
+        down1 = setup("objects/rock");
 
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream("/res/objects/rock.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            
-        }catch(IOException e){
-            e.printStackTrace();
-        }
 
     
     }

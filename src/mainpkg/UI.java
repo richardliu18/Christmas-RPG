@@ -3,8 +3,8 @@ package mainpkg;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import entity.Entity;
 import object.OBJ_Heart;
-import object.SuperObject;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -34,7 +34,7 @@ public class UI {
 
 
         //Create HUD object
-        SuperObject heart = new OBJ_Heart(gp);
+        Entity heart = new OBJ_Heart(gp);
         fullHeart = heart.image;
         halfHeart = heart.image2;
         noHeart = heart.image3;
