@@ -1,5 +1,8 @@
 package entity;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -101,6 +104,10 @@ public class Player extends Entity {
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObj(objIndex);
 
+            //check monster collision
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
             //if collision is false, player can move
             if(collisionOn==false){
                 switch(direction){
@@ -131,7 +138,14 @@ public class Player extends Entity {
                 spriteCounter=0;
             }
     }
-
+    //This needs to be outside key if statement
+    if(invincible == true){
+        invincibleCounter++;
+        if(invincibleCounter > 60){
+            invincible=false;
+            invincibleCounter=0;
+        }
+    }
     }
     public void pickUpObj(int i){
         if(i!=999){
@@ -143,6 +157,14 @@ public class Player extends Entity {
             if(gp.keyH.enterPressed == true){
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
+            }
+        }
+    }
+    public void contactMonster(int i){
+        if(i!=999){
+            if(invincible == false){
+            life-=1;
+            invincible = true;
             }
         }
     }
@@ -190,6 +212,16 @@ public class Player extends Entity {
                 break;
         }
 
+        if(invincible == true){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.1f));
+        }
         g2.drawImage(image, screenX, screenY, null);
+
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));//reset to normal after invincible
+        
+        //debug
+        // g2.setFont(new Font("Arial", Font.PLAIN, 26));
+        // g2.setColor(Color.black);
+        // g2.drawString("Invincible: "+invincibleCounter, gp.tileSize, gp.tileSize*5);
     }
 }

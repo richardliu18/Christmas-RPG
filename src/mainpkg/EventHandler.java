@@ -45,10 +45,10 @@ public class EventHandler {
         if(hit(4, 4, "any") == true){
             damagePit(4, 4, gp.dialogueState);
         }
-        if(hit(5, 4, "up") == true){
+        if(hit(5, 4, "any") == true){
             healingPool(5, 4,gp.dialogueState);
         }
-        if(hit(6,4,"up") == true){
+        if(hit(6,4,"any") == true){
             teleport(6, 4, gp.dialogueState);
         }
     }
