@@ -11,6 +11,6 @@ public class OBJ_treelights extends Entity{
 
         name = "treelights";
 
-        down1 = setup("objects/treelights");
+        down1 = setup("objects/treelights", gp.tileSize, gp.tileSize);
     }
 }

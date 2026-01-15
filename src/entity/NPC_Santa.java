@@ -31,14 +31,14 @@ public class NPC_Santa extends Entity{
     }
     public void getImage(){
 
-        up1=setup("npc/santa/santaUp1");
-        up2=setup("npc/santa/santaUp2");
-        down1=setup("npc/santa/santaDown3");
-        down2=setup("npc/santa/santaDown2");
-        right1=setup("npc/santa/santaRight1");
-        right2=setup("npc/santa/santaRight2");
-        left1=setup("npc/santa/santaLeft1");
-        left2=setup("npc/santa/santaLeft2");
+        up1=setup("npc/santa/santaUp1", gp.tileSize, gp.tileSize);
+        up2=setup("npc/santa/santaUp2", gp.tileSize, gp.tileSize);
+        down1=setup("npc/santa/santaDown3", gp.tileSize, gp.tileSize);
+        down2=setup("npc/santa/santaDown2", gp.tileSize, gp.tileSize);
+        right1=setup("npc/santa/santaRight1", gp.tileSize, gp.tileSize);
+        right2=setup("npc/santa/santaRight2", gp.tileSize, gp.tileSize);
+        left1=setup("npc/santa/santaLeft1", gp.tileSize, gp.tileSize);
+        left2=setup("npc/santa/santaLeft2", gp.tileSize, gp.tileSize);
         
     }
     public void setAction(){

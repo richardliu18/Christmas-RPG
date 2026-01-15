@@ -12,6 +12,6 @@ public class OBJ_present extends Entity{
     name = "present";
     collision = true;
 
-    down1 = setup("objects/bigPresent");
+    down1 = setup("objects/bigPresent", gp.tileSize, gp.tileSize);
     }
 }

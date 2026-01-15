@@ -7,9 +7,13 @@ import mainpkg.GamePanel;
 
 public class MON_Grinch extends Entity{
 
-    public MON_Grinch(GamePanel gp) {
-        super(gp);
+    GamePanel gp;
 
+    public MON_Grinch(GamePanel gp) {
+        
+        super(gp);
+        this.gp=gp;
+        
         name = "Grinch";
         speed=1;
         maxLife=4;
@@ -26,14 +30,14 @@ public class MON_Grinch extends Entity{
         getImage();
     }
     public void getImage(){
-        up1 = setup("/monster/grinch1");
-        up2 = setup("/monster/grinch2");
-        down1 = setup("/monster/grinch1");
-        down2 = setup("/monster/grinch2");
-        right1 = setup("/monster/grinch1");
-        right2 = setup("/monster/grinch2");
-        left1 = setup("/monster/grinch1");
-        left2 = setup("/monster/grinch2");
+        up1 = setup("/monster/grinch1", gp.tileSize, gp.tileSize);
+        up2 = setup("/monster/grinch2", gp.tileSize, gp.tileSize);
+        down1 = setup("/monster/grinch1", gp.tileSize, gp.tileSize);
+        down2 = setup("/monster/grinch2", gp.tileSize, gp.tileSize);
+        right1 = setup("/monster/grinch1", gp.tileSize, gp.tileSize);
+        right2 = setup("/monster/grinch2", gp.tileSize, gp.tileSize);
+        left1 = setup("/monster/grinch1", gp.tileSize, gp.tileSize);
+        left2 = setup("/monster/grinch2", gp.tileSize, gp.tileSize);
 
     }
     public void setAction(){

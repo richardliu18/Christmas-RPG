@@ -10,7 +10,7 @@ public class OBJ_cleaner extends Entity{
         super(gp);
 
         name = "cleaner";
-        down1 = setup("objects/cleaner");
+        down1 = setup("objects/cleaner", gp.tileSize, gp.tileSize);
 
     
     }

@@ -11,7 +11,7 @@ public class OBJ_sled extends Entity{
         
         name = "sled";
 
-        down1 = setup("objects/sled");
+        down1 = setup("objects/sled", gp.tileSize, gp.tileSize);
 
     
     }

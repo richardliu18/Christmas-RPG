@@ -1,6 +1,8 @@
 package entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -16,10 +18,12 @@ public class Entity {
     public int worldX, worldY;
     public int speed;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public String direction = "down";
     public int spriteCounter=0;
     public int spriteNum=1;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
+    public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
@@ -36,6 +40,7 @@ public class Entity {
     //character status
     public int maxLife;
     public int life;
+    public boolean attacking;
 
 
     public Entity(GamePanel gp){
@@ -43,14 +48,14 @@ public class Entity {
         this.gp=gp;
 
     }
-    public BufferedImage setup(String imagePath){
+    public BufferedImage setup(String imagePath, int width, int height){
 
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
         
         try{
             image = ImageIO.read(getClass().getResourceAsStream("/res/"+imagePath+".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = uTool.scaleImage(image, width, height);
 
         }catch(IOException e){
             e.printStackTrace();
@@ -130,9 +135,16 @@ public class Entity {
             spriteCounter=0;
         }
 
+        if(invincible == true){
+            invincibleCounter++;
+            if(invincibleCounter > 40){
+                invincible=false;
+                invincibleCounter=0;
+            }
+        }
 
     }
-    public void draw(Graphics g2){
+    public void draw(Graphics2D g2){
 
         BufferedImage image = null;
 
@@ -179,6 +191,12 @@ public class Entity {
                 }
                 break;
     }
+    if(invincible == true){
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+    }
+
     g2.drawImage(image, screenX, screenY, null);
+
+    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 }
