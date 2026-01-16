@@ -289,7 +289,6 @@ public class Player extends Entity {
                 if(spriteNum==2){image=right2;}
             }
             if(attacking==true){
-                tempScreenX=screenX-gp.tileSize;
                 if(spriteNum==1){image=attackRight1;}
                 if(spriteNum==2){image=attackRight2;}    
             }
@@ -300,6 +299,7 @@ public class Player extends Entity {
                 if(spriteNum==2){image=left2;}
             }
             if(attacking==true){
+                tempScreenX=screenX-gp.tileSize;
                 if(spriteNum==1){image=attackLeft1;}
                 if(spriteNum==2){image=attackLeft2;}    
             }
