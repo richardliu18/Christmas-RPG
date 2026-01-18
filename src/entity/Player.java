@@ -159,7 +159,7 @@ public class Player extends Entity {
     //This needs to be outside key if statement
     if(invincible == true){
         invincibleCounter++;
-        if(invincibleCounter > 60){
+        if(invincibleCounter > 50){
             invincible=false;
             invincibleCounter=0;
         }
@@ -224,6 +224,7 @@ public class Player extends Entity {
             }
             else{
                 if(gp.keyH.enterPressed==true){
+                    gp.playSE(3);
                     attacking = true;
                 }
             }
@@ -233,20 +234,24 @@ public class Player extends Entity {
     public void contactMonster(int i){
         if(i!=999){
             if(invincible == false){
-            life-=1;
-            invincible = true;
+                gp.playSE(4);
+                life-=1;
+                invincible = true;
             }
         }
     }
     public void damageMonster(int i){
         if(i != 999){
             if(gp.monster[i].invincible==false){
-
+                int n = (int)(Math.random()*4)+6;
+                gp.playSE(n);
                 gp.monster[i].life-=1;
                 gp.monster[i].invincible = true;
+                gp.monster[i].damageReaction();
 
                 if(gp.monster[i].life<=0){
-                    gp.monster[i]=null;
+                    gp.monster[i].dying = true;
+                    gp.playSE(5);
                 }
             }
         }
