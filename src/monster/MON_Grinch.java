@@ -2,6 +2,8 @@ package monster;
 
 import java.util.Random;
 
+import javax.swing.DefaultListCellRenderer;
+
 import entity.Entity;
 import mainpkg.GamePanel;
 
@@ -19,6 +21,9 @@ public class MON_Grinch extends Entity{
         maxLife=4;
         life=maxLife;
         type = 2;
+        attack = 2;
+        defense = 1;
+        exp = 1;
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -64,9 +69,24 @@ public class MON_Grinch extends Entity{
 
         }
         }
+
+    int speedCounter = 0;
+    int defaultSpeed;
+
     public void damageReaction(){
-        
-        actionLockCounter = 0;
-        direction = gp.player.direction;
+
+        speedCounter++;
+        if(speedCounter==1){
+            defaultSpeed = speed;
+        }
+        if(speedCounter>1 && speedCounter <= 20){
+            actionLockCounter = 0;
+            direction = gp.player.direction;
+            speed = defaultSpeed+2;
+        }
+        if(speedCounter >=20){
+            speed=defaultSpeed;
+            speedCounter=0;
+        }
     }
 }

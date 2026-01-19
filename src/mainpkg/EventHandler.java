@@ -85,9 +85,12 @@ public class EventHandler {
     }
     public void healingPool(int row, int col, int gameState){
         if(gp.keyH.enterPressed == true){
+            gp.player.attackCanceled=true;
             gp.gameState = gameState;
             gp.ui.currentDialogue = "The Christmas cheer rejuvinates you";
             gp.player.life = gp.player.maxLife;
+
+            gp.aSetter.setMonster();
         }
     }
     public void teleport(int row, int col, int gameState){

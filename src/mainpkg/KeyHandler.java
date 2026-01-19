@@ -22,12 +22,34 @@ public class KeyHandler implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
 
-        int code = e.getKeyCode();
+    int code = e.getKeyCode();
 
-        //Title State
-        if(gp.gameState == gp.titleState){
+    //Title State
+    if(gp.gameState == gp.titleState){
+        titleState(code);
+    }
+     //Play State
+    else if(gp.gameState == gp.playState){
+        playState(code);
+    }
+    //pause state
+    else if(gp.gameState==gp.pauseState){
+        pauseState(code);
+    }
+    //Dialogue state
+    else if(gp.gameState==gp.dialogueState){
+        dialogueState(code);
+    }
+    //Character state
+    else if(gp.gameState == gp.characterState){
+        characterStatus(code);
+    }
+        
+    }
 
-            if(gp.ui.titleScreenState == 0){
+    
+    public void titleState(int code){
+        if(gp.ui.titleScreenState == 0){
             if(code==KeyEvent.VK_W){
                 gp.ui.commandNum--;
                 if(gp.ui.commandNum<0){
@@ -86,9 +108,7 @@ public class KeyHandler implements KeyListener{
             }
         }
     }
-
-        //Play State
-       else if(gp.gameState == gp.playState){
+    public void playState(int code){
         if(code==KeyEvent.VK_W){
             upPressed = true;
         }
@@ -102,7 +122,10 @@ public class KeyHandler implements KeyListener{
             rightPressed=true;
         }
         if(code==KeyEvent.VK_P){
-                gp.gameState = gp.pauseState;
+            gp.gameState = gp.pauseState;
+        }
+        if(code==KeyEvent.VK_C){
+            gp.gameState = gp.characterState;
         }
         if(code==KeyEvent.VK_ENTER){
             enterPressed=true;
@@ -118,19 +141,20 @@ public class KeyHandler implements KeyListener{
         
         }
     }
-    //pause state
-    else if(gp.gameState==gp.pauseState){
+    public void pauseState(int code){
         if(code==KeyEvent.VK_P){
-                gp.gameState = gp.playState;
+            gp.gameState = gp.playState;
         }
     }
-    else if(gp.gameState==gp.dialogueState){
+    public void dialogueState(int code){
         if(code==KeyEvent.VK_ENTER){
             gp.gameState = gp.playState;
         }
     }
-        
-        
+    public void characterStatus(int code){
+        if(code==KeyEvent.VK_C){
+            gp.gameState = gp.playState;
+        }
     }
 
     @Override
