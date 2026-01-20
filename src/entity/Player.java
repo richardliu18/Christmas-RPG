@@ -6,11 +6,13 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-
+import java.util.ArrayList;
 
 import mainpkg.GamePanel;
 import mainpkg.KeyHandler;
+import object.OBJ_cleaner;
 import object.OBJ_cookieShield;
+import object.OBJ_sled;
 import object.OBJ_smokingPipe;
 
 public class Player extends Entity {
@@ -20,6 +22,8 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public boolean attackCanceled = false;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    // public final int inventorySize = 20;
     // public int hasCleaner = 0;
 
     
@@ -48,6 +52,7 @@ public class Player extends Entity {
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
+        setItems();
     }
 
 
@@ -288,6 +293,12 @@ public class Player extends Entity {
                 }
             }
         }
+    }
+    public void setItems(){
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new OBJ_cleaner(gp));
+        inventory.add(new OBJ_sled(gp));
     }
     public void checkLevelUp(){
         if(exp >= nextLevelExp){

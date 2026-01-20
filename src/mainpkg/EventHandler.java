@@ -91,6 +91,7 @@ public class EventHandler {
             gp.player.life = gp.player.maxLife;
 
             gp.aSetter.setMonster();
+            
         }
     }
     public void teleport(int row, int col, int gameState){

@@ -11,6 +11,7 @@ public class OBJ_cookieShield extends Entity{
         name = "Cookie Shield";
         down1 = setup("/objects/cookieShield", gp.tileSize, gp.tileSize);
         defenseValue = 1;
+        description = name + ":\n" + "A shield made \nfrom gingerbread";
     }
 
 }

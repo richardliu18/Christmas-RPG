@@ -22,7 +22,7 @@ public class Sound {
         soundURL[7] = getClass().getResource("/res/sound/MonsterSound2.wav");
         soundURL[8] = getClass().getResource("/res/sound/MonsterSound3.wav");
         soundURL[9] = getClass().getResource("/res/sound/MonsterSound4.wav");
-
+        soundURL[10] = getClass().getResource("/res/sound/Cursor.wav");
         
 
     }

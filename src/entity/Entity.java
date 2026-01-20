@@ -61,6 +61,7 @@ public class Entity {
     //item stats
     public int attackValue;
     public int defenseValue;
+    public String description = "";
 
 
 

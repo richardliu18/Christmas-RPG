@@ -11,6 +11,7 @@ public class OBJ_smokingPipe extends Entity{
         name = "Smoking Pipe";
         down1 = setup("objects/smokingPipe",gp.tileSize, gp.tileSize);
         attackValue=2;
+        description = name + ":\n" + "Frosty's pipe";
         
     }
 }
