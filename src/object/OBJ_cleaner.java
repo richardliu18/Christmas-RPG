@@ -9,9 +9,9 @@ public class OBJ_cleaner extends Entity{
 
         super(gp);
 
-        name = "cleaner";
+        name = "Cleaner";
         down1 = setup("objects/cleaner", gp.tileSize, gp.tileSize);
-
+        description = name + " -\n" + "Get sweeping";
     
     }
 

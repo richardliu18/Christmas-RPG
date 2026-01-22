@@ -10,9 +10,9 @@ public class OBJ_rock extends Entity{
 
         super(gp);
 
-        name = "rock";
+        name = "Rock";
         down1 = setup("objects/rock", gp.tileSize, gp.tileSize);
-
+        description = name + " -\n" + "A rock";
 
     
     }

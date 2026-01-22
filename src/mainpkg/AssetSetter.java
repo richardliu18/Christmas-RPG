@@ -2,6 +2,9 @@ package mainpkg;
 
 import entity.NPC_Santa;
 import monster.MON_Grinch;
+import object.OBJ_axe;
+import object.OBJ_mintShield;
+import object.OBJ_present;
 import object.OBJ_rock;
 import object.OBJ_sled;
 
@@ -21,6 +24,18 @@ public class AssetSetter {
       gp.obj[1] = new OBJ_rock(gp);
       gp.obj[1].worldX = gp.tileSize*10;
       gp.obj[1].worldY = gp.tileSize*8;
+
+      gp.obj[2] = new OBJ_axe(gp);
+      gp.obj[2].worldX = gp.tileSize*11;
+      gp.obj[2].worldY = gp.tileSize*8;
+
+      gp.obj[3] = new OBJ_mintShield(gp);
+      gp.obj[3].worldX = gp.tileSize*20;
+      gp.obj[3].worldY = gp.tileSize*8;
+
+      gp.obj[4] = new OBJ_present(gp);
+      gp.obj[4].worldX = gp.tileSize*13;
+      gp.obj[4].worldY = gp.tileSize*8;
 
 
 

@@ -20,10 +20,10 @@ public class MON_Grinch extends Entity{
         speed=1;
         maxLife=4;
         life=maxLife;
-        type = 2;
-        attack = 2;
+        type = type_monster;
+        attack = 3;
         defense = 1;
-        exp = 1;
+        exp = 5;
 
         solidArea.x = 3;
         solidArea.y = 18;

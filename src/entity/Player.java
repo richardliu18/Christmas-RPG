@@ -23,7 +23,7 @@ public class Player extends Entity {
     public final int screenY;
     public boolean attackCanceled = false;
     public ArrayList<Entity> inventory = new ArrayList<>();
-    // public final int inventorySize = 20;
+    public final int maxInventorySize = 20;
     // public int hasCleaner = 0;
 
     
@@ -78,6 +78,7 @@ public class Player extends Entity {
         defense = getDefense();
     }
     public int getAttack(){
+        attackArea = currentWeapon.attackArea;
         return attack = strength* currentWeapon.attackValue;
     }
     public int getDefense(){   
@@ -96,15 +97,28 @@ public class Player extends Entity {
         
     }
     public void getPlayerAttackImage(){
+        
+        if(currentWeapon.type == type_pipe){
+            attackUp1 = setup("/player/pipeAttackUp1", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setup("/player/pipeAttackUp2", gp.tileSize, gp.tileSize*2);
+            attackDown1 = setup("/player/pipeAttackDown1", gp.tileSize, gp.tileSize*2);
+            attackDown2 = setup("/player/pipeAttackDown2", gp.tileSize, gp.tileSize*2);
+            attackRight1 = setup("/player/pipeAttackRight1", gp.tileSize*2, gp.tileSize);
+            attackRight2 = setup("/player/pipeAttackRight2", gp.tileSize*2, gp.tileSize);
+            attackLeft1 = setup("/player/pipeAttackLeft1", gp.tileSize*2, gp.tileSize);
+            attackLeft2 = setup("/player/pipeAttackLeft2", gp.tileSize*2, gp.tileSize);
+        }
+        if(currentWeapon.type == type_axe){
+            attackUp1 = setup("/player/axeAttackUp1", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setup("/player/axeAttackUp2", gp.tileSize, gp.tileSize*2);
+            attackDown1 = setup("/player/axeAttackDown1", gp.tileSize, gp.tileSize*2);
+            attackDown2 = setup("/player/axeAttackDown2", gp.tileSize, gp.tileSize*2);
+            attackRight1 = setup("/player/axeAttackRight1", gp.tileSize*2, gp.tileSize);
+            attackRight2 = setup("/player/axeAttackRight2", gp.tileSize*2, gp.tileSize);
+            attackLeft1 = setup("/player/axeAttackLeft1", gp.tileSize*2, gp.tileSize);
+            attackLeft2 = setup("/player/axeAttackLeft2", gp.tileSize*2, gp.tileSize);
+        }
 
-        attackUp1 = setup("/player/attackUp1", gp.tileSize, gp.tileSize*2);
-        attackUp2 = setup("/player/attackUp2", gp.tileSize, gp.tileSize*2);
-        attackDown1 = setup("/player/attackDown1", gp.tileSize, gp.tileSize*2);
-        attackDown2 = setup("/player/attackDown2", gp.tileSize, gp.tileSize*2);
-        attackRight1 = setup("/player/attackRight1", gp.tileSize*2, gp.tileSize);
-        attackRight2 = setup("/player/attackRight2", gp.tileSize*2, gp.tileSize);
-        attackLeft1 = setup("/player/attackLeft1", gp.tileSize*2, gp.tileSize);
-        attackLeft2 = setup("/player/attackLeft2", gp.tileSize*2, gp.tileSize);
     }
  
 
@@ -238,10 +252,24 @@ public class Player extends Entity {
         }
     }
     public void pickUpObj(int i){
+
         if(i!=999){
-           
-           }
+
+        String text;
+
+        if(inventory.size() != maxInventorySize){
+
+            inventory.add(gp.obj[i]);
+            gp.playSE(5);
+            text = "Got a " + gp.obj[i].name + "!";
         }
+        else{
+            text = "You cannot carry anymore!";
+        }
+        gp.ui.addMessage(text);
+        gp.obj[i] = null;
+        }
+    }
     public void interactNPC(int i){
 
         if(gp.keyH.enterPressed){
@@ -312,6 +340,35 @@ public class Player extends Entity {
 
             gp.gameState = gp.dialogueState;
             gp.ui.currentDialogue = "You are level " + level + " now!";
+        }
+    }
+    public void selectItem(){
+
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+
+        if(itemIndex < inventory.size()){
+
+            Entity selectedItem = inventory.get(itemIndex);
+
+            if(selectedItem.type == type_pipe || selectedItem.type == type_axe){
+
+                currentWeapon = selectedItem;
+                attack = getAttack();
+                getPlayerAttackImage();
+            }
+            if(selectedItem.type == type_shield){
+
+                currentShield = selectedItem;
+                defense = getDefense();
+    
+            }
+            if(selectedItem.type == type_consumable){
+
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+
+            }
+
         }
     }
     public void draw(Graphics2D g2){
