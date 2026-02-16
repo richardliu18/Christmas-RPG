@@ -17,7 +17,7 @@ public class Entity {
 
     GamePanel gp;
     public int worldX, worldY;
-    public int speed;
+    public int speed, defaultSpeed;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public String direction = "down";
@@ -42,6 +42,7 @@ public class Entity {
     public int dyingCounter=0;
     public boolean hpBarOn = false;
     public int hpBarCounter = 0;
+    public int shotAvailableCounter;
 
     public int type; //0=player, 1=npc, 2=monster
     public final int type_player = 0;
@@ -65,11 +66,13 @@ public class Entity {
     public int coin;
     public Entity currentWeapon;
     public Entity currentShield;
+    public Projectile projectile;
 
     //item stats
     public int attackValue;
     public int defenseValue;
     public String description = "";
+    public int useCost;
 
 
 
@@ -292,7 +295,6 @@ public class Entity {
             changeAlpha(g2, 1f);
         }
         if(dyingCounter>i){
-            dying = false;
             alive = false;
         }
     }

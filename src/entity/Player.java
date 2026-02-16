@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import mainpkg.GamePanel;
 import mainpkg.KeyHandler;
+import object.OBJ_Coal;
 import object.OBJ_cleaner;
 import object.OBJ_cookieShield;
 import object.OBJ_sled;
@@ -61,6 +62,7 @@ public class Player extends Entity {
         worldX=gp.tileSize*3; //player start position
         worldY=gp.tileSize*3;
         speed=4;
+        defaultSpeed=4;
         direction="down";
         
         //player status
@@ -76,6 +78,7 @@ public class Player extends Entity {
         currentShield = new OBJ_cookieShield(gp);
         attack = getAttack();
         defense = getDefense();
+        projectile = new OBJ_Coal(gp);
     }
     public int getAttack(){
         attackArea = currentWeapon.attackArea;
@@ -197,6 +200,16 @@ public class Player extends Entity {
                 spriteCounter=0;
             }
     }
+    if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter==30){
+
+        //set projectile
+        projectile.set(worldX, worldY, direction, true, this);
+        //add to list
+        gp.projectileList.add(projectile);
+        shotAvailableCounter=0;
+
+
+    }
     //This needs to be outside key if statement
     if(invincible == true){
         invincibleCounter++;
@@ -204,6 +217,9 @@ public class Player extends Entity {
             invincible=false;
             invincibleCounter=0;
         }
+    }
+    if(shotAvailableCounter<30){
+        shotAvailableCounter++;
     }
     }
     public void attacking(){
@@ -241,7 +257,7 @@ public class Player extends Entity {
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
             solidArea.height= solidAreaHeight;
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
 
 
         }
@@ -283,23 +299,29 @@ public class Player extends Entity {
         }
     public void contactMonster(int i){
         if(i!=999){
-            if(invincible == false){
+            if(invincible == false && gp.monster[i].dying == false){
                 gp.playSE(4);
                 int damage = gp.monster[i].attack - defense;
                 if(damage<0){
                     damage=0;
+                }
+                if(speed>defaultSpeed){
+                    speed -=2;
+                    if(speed<2){
+                        speed=2;
+                    }
                 }
                 life-=damage;
                 invincible = true;
             }
         }
     }
-    public void damageMonster(int i){
+    public void damageMonster(int i, int attack){
         if(i != 999){
             if(gp.monster[i].invincible==false){
 
-                int n = (int)(Math.random()*4)+6;
-                gp.playSE(n);
+                // int n = (int)(Math.random()*4)+6;
+                // gp.playSE(n);
 
                 int damage = attack - gp.monster[i].defense;
                 if(damage<0){
@@ -331,7 +353,7 @@ public class Player extends Entity {
     public void checkLevelUp(){
         if(exp >= nextLevelExp){
             level++;
-            nextLevelExp=nextLevelExp+10;
+            nextLevelExp=nextLevelExp*2;
             maxLife+=2;
             strength++;
             dexterity++;
