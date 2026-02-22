@@ -1,5 +1,6 @@
 package object;
 
+import entity.Entity;
 import entity.Projectile;
 import mainpkg.GamePanel;
 
@@ -32,7 +33,18 @@ public class OBJ_Coal  extends Projectile{
         left2 = setup("projectile/coal2", gp.tileSize, gp.tileSize);
 
     }
+    public boolean haveMana(Entity user){
 
+        boolean haveMana = false;
+        if(user.mana >= useCost){
+            haveMana = true;
+        }
+
+        return haveMana;
+    }
+    public void subtractMana(Entity user){
+        user.mana -= useCost;
+    }
 
 
 }

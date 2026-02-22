@@ -6,6 +6,7 @@ import javax.swing.DefaultListCellRenderer;
 
 import entity.Entity;
 import mainpkg.GamePanel;
+import object.OBJ_GrinchGoo;
 
 public class MON_Grinch extends Entity{
 
@@ -24,6 +25,7 @@ public class MON_Grinch extends Entity{
         attack = 3;
         defense = 1;
         exp = 5;
+        projectile = new OBJ_GrinchGoo(gp);
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -66,7 +68,12 @@ public class MON_Grinch extends Entity{
                 direction = "right";
             }
             actionLockCounter=0;
-
+        }
+        int i = new Random().nextInt(100)+1;
+        if(i > 99 && projectile.alive == false && shotAvailableCounter == 30){
+            projectile.set(worldX, worldY, direction, true, this);
+            gp.projectileList.add(projectile);
+            shotAvailableCounter = 0;
         }
         }
 

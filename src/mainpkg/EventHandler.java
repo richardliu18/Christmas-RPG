@@ -89,7 +89,7 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.ui.currentDialogue = "The Christmas cheer rejuvinates you";
             gp.player.life = gp.player.maxLife;
-
+            gp.player.mana = gp.player.maxMana;
             gp.aSetter.setMonster();
             
         }

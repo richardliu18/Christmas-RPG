@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import mainpkg.GamePanel;
 import mainpkg.KeyHandler;
 import object.OBJ_Coal;
+import object.OBJ_GrinchGoo;
 import object.OBJ_cleaner;
 import object.OBJ_cookieShield;
 import object.OBJ_sled;
@@ -78,7 +79,11 @@ public class Player extends Entity {
         currentShield = new OBJ_cookieShield(gp);
         attack = getAttack();
         defense = getDefense();
+        maxMana = 4;
+        mana = maxMana;
+        ammo = 10;
         projectile = new OBJ_Coal(gp);
+        // projectile = new OBJ_GrinchGoo(gp);
     }
     public int getAttack(){
         attackArea = currentWeapon.attackArea;
@@ -200,13 +205,15 @@ public class Player extends Entity {
                 spriteCounter=0;
             }
     }
-    if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter==30){
+    if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter==30 && projectile.haveMana(this) == true){
 
         //set projectile
         projectile.set(worldX, worldY, direction, true, this);
         //add to list
         gp.projectileList.add(projectile);
         shotAvailableCounter=0;
+        //subtract mana
+        projectile.subtractMana(this);
 
 
     }

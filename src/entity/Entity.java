@@ -67,6 +67,9 @@ public class Entity {
     public Entity currentWeapon;
     public Entity currentShield;
     public Projectile projectile;
+    public int mana;
+    public int maxMana;
+    public int ammo;
 
     //item stats
     public int attackValue;
@@ -136,14 +139,7 @@ public class Entity {
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
         if(this.type == type_monster && contactPlayer == true){
-            if(gp.player.invincible==false){
-                int damage = attack - gp.player.defense;
-                if(damage<0){
-                    damage=0;
-                }
-                gp.player.life-=damage;
-                gp.player.invincible = true;
-            }
+            damagePlayer(attack);
         }
         
 
@@ -183,7 +179,19 @@ public class Entity {
                 invincibleCounter=0;
             }
         }
-
+        if(shotAvailableCounter<30){
+            shotAvailableCounter++;
+        }
+    }
+    public void damagePlayer(int attack){
+        if(gp.player.invincible==false){
+            int damage = attack - gp.player.defense;
+            if(damage<0){
+                damage=0;
+            }
+            gp.player.life-=damage;
+            gp.player.invincible = true;
+        }
     }
     public void draw(Graphics2D g2){
 
@@ -301,5 +309,10 @@ public class Entity {
     public void changeAlpha(Graphics2D g2, float alphaValue){
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
+    public boolean haveMana(Entity user){
 
+        boolean haveMana = false;
+        return haveMana;
+    }
+    public void subtractMana(Entity user){}
 }
