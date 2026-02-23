@@ -2,7 +2,10 @@ package mainpkg;
 
 import entity.NPC_Santa;
 import monster.MON_Grinch;
+import object.OBJ_Heart;
 import object.OBJ_axe;
+import object.OBJ_cane;
+import object.OBJ_mana;
 import object.OBJ_mintShield;
 import object.OBJ_present;
 import object.OBJ_rock;
@@ -17,26 +20,58 @@ public class AssetSetter {
     }
 
     public void setObject(){
-      gp.obj[0] = new OBJ_sled(gp);
-      gp.obj[0].worldX = gp.tileSize*9;
-      gp.obj[0].worldY = gp.tileSize*8;
+    
+        int i = 0;
+      gp.obj[i] = new OBJ_sled(gp);
+      gp.obj[i].worldX = gp.tileSize*9;
+      gp.obj[i].worldY = gp.tileSize*8;
+        i++;
 
-      gp.obj[1] = new OBJ_rock(gp);
-      gp.obj[1].worldX = gp.tileSize*10;
-      gp.obj[1].worldY = gp.tileSize*8;
+      gp.obj[i] = new OBJ_rock(gp);
+      gp.obj[i].worldX = gp.tileSize*10;
+      gp.obj[i].worldY = gp.tileSize*8;
+      i++;
 
-      gp.obj[2] = new OBJ_axe(gp);
-      gp.obj[2].worldX = gp.tileSize*11;
-      gp.obj[2].worldY = gp.tileSize*8;
+      gp.obj[i] = new OBJ_axe(gp);
+      gp.obj[i].worldX = gp.tileSize*11;
+      gp.obj[i].worldY = gp.tileSize*8;
+      i++;
 
-      gp.obj[3] = new OBJ_mintShield(gp);
-      gp.obj[3].worldX = gp.tileSize*20;
-      gp.obj[3].worldY = gp.tileSize*8;
+      gp.obj[i] = new OBJ_mintShield(gp);
+      gp.obj[i].worldX = gp.tileSize*20;
+      gp.obj[i].worldY = gp.tileSize*8;
+      i++;
 
-      gp.obj[4] = new OBJ_present(gp);
-      gp.obj[4].worldX = gp.tileSize*13;
-      gp.obj[4].worldY = gp.tileSize*8;
+      gp.obj[i] = new OBJ_present(gp);
+      gp.obj[i].worldX = gp.tileSize*13;
+      gp.obj[i].worldY = gp.tileSize*8;
+      i++;
 
+      gp.obj[i] = new OBJ_cane(gp);
+      gp.obj[i].worldX = gp.tileSize*14;
+      gp.obj[i].worldY = gp.tileSize*8;
+      i++;
+
+      gp.obj[i] = new OBJ_cane(gp);
+      gp.obj[i].worldX = gp.tileSize*15;
+      gp.obj[i].worldY = gp.tileSize*8;
+      i++;
+
+      gp.obj[i] = new OBJ_mana(gp);
+      gp.obj[i].worldX = gp.tileSize*15;
+      gp.obj[i].worldY = gp.tileSize*9;
+      i++;
+
+
+      gp.obj[i] = new OBJ_mana(gp);
+      gp.obj[i].worldX = gp.tileSize*15;
+      gp.obj[i].worldY = gp.tileSize*10;
+      i++;
+
+      gp.obj[i] = new OBJ_Heart(gp);
+      gp.obj[i].worldX = gp.tileSize*15;
+      gp.obj[i].worldY = gp.tileSize*11;
+      i++;
 
 
     }

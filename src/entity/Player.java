@@ -73,7 +73,7 @@ public class Player extends Entity {
         strength = 1;
         dexterity = 1;
         exp = 0;
-        nextLevelExp = 5;
+        nextLevelExp = 20;
         coin = 0;
         currentWeapon = new OBJ_smokingPipe(gp);
         currentShield = new OBJ_cookieShield(gp);
@@ -228,6 +228,12 @@ public class Player extends Entity {
     if(shotAvailableCounter<30){
         shotAvailableCounter++;
     }
+    if(life > maxLife){
+        life=maxLife;
+    }
+    if(mana > maxMana){
+        mana = maxMana;
+    }
     }
     public void attacking(){
 
@@ -278,6 +284,14 @@ public class Player extends Entity {
 
         if(i!=999){
 
+        //pick up only   
+        if(gp.obj[i].type == type_pickup){
+            gp.playSE(5);
+            gp.obj[i].use(this);
+            gp.obj[i] = null;
+        }
+        else{
+            //inventory
         String text;
 
         if(inventory.size() != maxInventorySize){
@@ -292,6 +306,8 @@ public class Player extends Entity {
         gp.ui.addMessage(text);
         gp.obj[i] = null;
         }
+        }
+        
     }
     public void interactNPC(int i){
 

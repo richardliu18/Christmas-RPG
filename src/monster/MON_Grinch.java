@@ -24,7 +24,7 @@ public class MON_Grinch extends Entity{
         type = type_monster;
         attack = 3;
         defense = 1;
-        exp = 5;
+        exp = 4;
         projectile = new OBJ_GrinchGoo(gp);
 
         solidArea.x = 3;

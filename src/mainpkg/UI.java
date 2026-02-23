@@ -398,7 +398,7 @@ public class UI {
         textY+= lineHeight;
         g2.drawString("Next Level", textX, textY);
         textY +=lineHeight;
-        g2.drawString("Coin", textX, textY);
+        g2.drawString("Cane", textX, textY);
         textY+= lineHeight + 20;
         g2.drawString("Weapon", textX, textY);
         textY +=lineHeight + 15;
