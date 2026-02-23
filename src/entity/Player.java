@@ -168,6 +168,9 @@ public class Player extends Entity {
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
 
+            //check iTile collision
+            int iTileINdex = gp.cChecker.checkEntity(this, gp.iTile);
+
             //if collision is false, player can move
             if(collisionOn==false && keyH.enterPressed ==false){
                 switch(direction){
@@ -259,6 +262,9 @@ public class Player extends Entity {
                 case"right":worldX+=attackArea.width; break;
             }
 
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+            damageInteractiveTile(iTileIndex);
+
             //attackArea becomes solidArea
             solidArea.width = attackArea.width;
             solidArea.height = attackArea.height;
@@ -278,6 +284,16 @@ public class Player extends Entity {
             spriteNum=1;
             spriteCounter=1;
             attacking=false;
+        }
+    }
+    public void damageInteractiveTile(int i){
+        if(i != 999 && gp.iTile[i].destructible == true && gp.iTile[i].isCorrectItem(this) == true && gp.iTile[i].invincible == false){
+
+            gp.iTile[i].life--;
+            gp.iTile[i].invincible = true;
+            if(gp.iTile[i].life == 0){
+            gp.iTile[i] = gp.iTile[i].getChangedForm(); // disappears, change later
+            }
         }
     }
     public void pickUpObj(int i){

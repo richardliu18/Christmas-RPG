@@ -1,6 +1,7 @@
 package mainpkg;
 
 import entity.NPC_Santa;
+import interactiveTile.iTree;
 import monster.MON_Grinch;
 import object.OBJ_Heart;
 import object.OBJ_axe;
@@ -118,5 +119,10 @@ public class AssetSetter {
         gp.monster[i].worldY = gp.tileSize*11;
         i++;
 
+    }
+    public void setInteractiveTile(){
+
+        int i = 0;
+        gp.iTile[i] = new iTree(gp, 14,8);
     }
 }
