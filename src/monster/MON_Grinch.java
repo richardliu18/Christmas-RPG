@@ -7,6 +7,9 @@ import javax.swing.DefaultListCellRenderer;
 import entity.Entity;
 import mainpkg.GamePanel;
 import object.OBJ_GrinchGoo;
+import object.OBJ_Heart;
+import object.OBJ_cane;
+import object.OBJ_mana;
 
 public class MON_Grinch extends Entity{
 
@@ -81,7 +84,6 @@ public class MON_Grinch extends Entity{
     int defaultSpeed;
 
     public void damageReaction(){
-
         speedCounter++;
         if(speedCounter==1){
             defaultSpeed = speed;
@@ -94,6 +96,20 @@ public class MON_Grinch extends Entity{
         if(speedCounter >=20){
             speed=defaultSpeed;
             speedCounter=0;
+        }
+    }
+    public void checkDrop(){
+
+        int i = new Random().nextInt(100)+1;
+
+        if(i < 50){
+            dropItem(new OBJ_cane(gp));
+        }
+        if(i >= 50 && i <=75){
+            dropItem(new OBJ_Heart(gp));
+        }
+        if(i>=75 && i<=100){
+            dropItem(new OBJ_mana(gp));
         }
     }
 }
